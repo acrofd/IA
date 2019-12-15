@@ -1,15 +1,16 @@
 import networkx as nx
-import matplotlib.pyplot as plt
+
 
 #Se incializa un array de las estaciones y sus conexiones.
-graph = { "Shinjuku": [ "Yoyogi", "Shin-Okubo", "Ochanomizu"],
+graph = { "Shinjuku": [ "Yoyogi", "Shin-Okubo", "Ochanomizu","Sendagaya"],
         "Yoyogi": ["Shinjuku", "Sendagaya", "Harajuku"],
         "Ochanomizu": ["Tokyo", "Suidobashi", "Shinjuku"],
-        "Sendagaya": ["Yoyogi", "Shinanomachi"],
+        "Sendagaya": ["Yoyogi", "Shinanomachi", "Shinjuku"],
         "Shinanomachi": ["Sendagaya", "Yotsuya"],
         "Yotsuya": ["Shinanomachi", "Iichigaya"],
         "Iichigaya": ["Yotsuya", "Iidabashi"],
         "Iidabashi": ["Iichigaya", "Suidobashi"],
+        "Suidobashi": ["Ochanomizu","Iidabashi", "Akihabara", ],
         "Akihabara": ["Ochanomizu", "Kanda", "Okachimachi"],
         "Tokyo": ["Ochanomizu", "Yurakucho", "Kanda"],
         "Shin-Okubo": ["Takadanobaba", "Shinjuku"],
@@ -25,7 +26,7 @@ graph = { "Shinjuku": [ "Yoyogi", "Shin-Okubo", "Ochanomizu"],
         "Uguisudani": ["Nippori", "Ueno"],
         "Ueno":['Uguisudani', "Okachimachi"],
         "Okachimachi": ["Akihabara", "Ueno"],
-        "Kanda": ["Akihabara", "Kanda"],
+        "Kanda": ["Akihabara", "Tokyo"],
         "Yurakucho": ["Tokyo", "Shimbashi"],
         "Shimbashi": ["Yurakucho", "Hamamatsucho"],
         "Tamachi": ["Hamamatsucho", "Shinagawa"],
@@ -50,22 +51,24 @@ def generate_edges(graph):
 edges = generate_edges(graph)
 #print(generate_edges(graph))
 
-
 #Se crea un grafo y se le anaden los valores
 G = nx.Graph()
 G.add_edges_from(edges)
 
 #Se anaden los pesos asociados al tiempo en min
 G['Shinjuku']['Yoyogi']['weight']=1
+G['Shinjuku']['Ochanomizu']['weight']=10
+G['Shinjuku']['Sendagaya']['weight']=1
+G['Shin-Okubo']['Shinjuku']['weight']=3
 G['Yoyogi']['Sendagaya']['weight']=2
+G['Yoyogi']['Harajuku']['weight']=3
 G['Sendagaya']['Shinanomachi']['weight']=2
 G['Shinanomachi']['Yotsuya']['weight']=2
 G['Yotsuya']['Iichigaya']['weight']=2
 G['Iichigaya']['Iidabashi']['weight']=2
 G['Iidabashi']['Suidobashi']['weight']=2
 G['Suidobashi']['Ochanomizu']['weight']=3
-G['Ochanomizu']['Akihabara']['weight']=2
-G['Shinjuku']['Ochanomizu']['weight']=10
+G['Suidobashi']['Akihabara']['weight']=3
 G['Ochanomizu']['Tokyo']['weight']=4
 G['Kanda']['Tokyo']['weight']=4
 G['Kanda']['Akihabara']['weight']=2
@@ -82,9 +85,6 @@ G['Otsuka']['Ikebukuro']['weight']=4
 G['Ikebukuro']['Mejiro']['weight']=3
 G['Mejiro']['Takadanobaba']['weight']=2
 G['Takadanobaba']['Shin-Okubo']['weight']=2
-G['Shin-Okubo']['Shinjuku']['weight']=3
-G['Shinjuku']['Yoyogi']['weight']=1
-G['Yoyogi']['Harajuku']['weight']=3
 G['Harajuku']['Shibuya']['weight']=2
 G['Shibuya']['Ebisu']['weight']=2
 G['Ebisu']['Meguro']['weight']=2
@@ -99,11 +99,7 @@ G['Yurakucho']['Tokyo']['weight']=1
 
 #Ejemplo obtener tiempo entre dos estaciones continuas
 #print(G.get_edge_data('Shimbashi', 'Yurakucho'))
-#print(G.get_edge_data('Yurakucho', 'Yoyogi'))
-
-#print(nx.astar_path(G,"Yoyogi", "Tokyo"))
 
 #Se dibuja con los nombres y se imprime
 #nx.draw(G, with_labels=True)
 #plt.show()
-

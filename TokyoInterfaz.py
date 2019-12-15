@@ -1,7 +1,7 @@
 import networkx as nx
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox
 from TokyoInterfazUI import Ui_MainWindow
-
+import Algoritmo
 import Grafo
 from VentanaAuxUI import Ui_MainWindow2
 
@@ -27,7 +27,7 @@ class window(QMainWindow, Ui_MainWindow):
         x = self.comboOrigen.currentText()
         y = self.comboDestino.currentText()
         z = Grafo.G
-        e = nx.astar_path(z, x, y)
+        e = Algoritmo.astar(x, y)
         eString = listToString(e)
         return eString
 

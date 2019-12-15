@@ -5,8 +5,10 @@
 # Created by: PyQt5 UI code generator 5.12.1
 #
 # WARNING! All changes made in this file will be lost!
+import os
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QPixmap
 
 
 class Ui_MainWindow(object):
@@ -77,7 +79,9 @@ class Ui_MainWindow(object):
         self.MapaMetro.setGeometry(QtCore.QRect(0, 0, 1241, 841))
         self.MapaMetro.setMaximumSize(QtCore.QSize(1241, 841))
         self.MapaMetro.setText("")
-        self.MapaMetro.setPixmap(QtGui.QPixmap("PycharmProjects/IA/Tokyo.jpg"))
+        path = os.path.dirname(os.path.abspath(__file__))
+        print(path)
+        self.MapaMetro.setPixmap(QPixmap(os.path.join(path, 'Tokyo.jpg')))
         self.MapaMetro.setObjectName("MapaMetro")
         self.CalcularRuta = QtWidgets.QPushButton(self.centralwidget)
         self.CalcularRuta.setGeometry(QtCore.QRect(90, 170, 171, 31))
@@ -179,12 +183,12 @@ class Ui_MainWindow(object):
         self.comboOrigen.setItemText(29, _translate("MainWindow", "Yurakucho"))
         self.comboOrigen.setItemText(30, _translate("MainWindow", "Sendagaya"))
         self.comboOrigen.setItemText(31, _translate("MainWindow", "Shinanomachi"))
-        self.comboOrigen.setItemText(32, _translate("MainWindow", "Yotsuta"))
+        self.comboOrigen.setItemText(32, _translate("MainWindow", "Yotsuya"))
         self.comboOrigen.setItemText(33, _translate("MainWindow", "Iichigaya"))
         self.comboOrigen.setItemText(34, _translate("MainWindow", "Iidabashi"))
         self.comboOrigen.setItemText(35, _translate("MainWindow", "Suidobashi"))
         self.comboOrigen.setItemText(36, _translate("MainWindow", "Ochanomizu"))
-        self.Titulo.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:24pt; font-weight:600; color:#ffffff;\">METRO TOKYO</span></p></body></html>"))
+        self.Titulo.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:24pt; font-weight:600; color:#ffffff;\">JAPAN RAILPASS</span></p></body></html>"))
         self.CalcularRuta.setText(_translate("MainWindow", "CalcularRuta"))
         self.comboDestino.setItemText(1, _translate("MainWindow", "Tokyo"))
         self.comboDestino.setItemText(2, _translate("MainWindow", "Kanda"))
@@ -217,7 +221,7 @@ class Ui_MainWindow(object):
         self.comboDestino.setItemText(29, _translate("MainWindow", "Yurakucho"))
         self.comboDestino.setItemText(30, _translate("MainWindow", "Sendagaya"))
         self.comboDestino.setItemText(31, _translate("MainWindow", "Shinanomachi"))
-        self.comboDestino.setItemText(32, _translate("MainWindow", "Yotsuta"))
+        self.comboDestino.setItemText(32, _translate("MainWindow", "Yotsuya"))
         self.comboDestino.setItemText(33, _translate("MainWindow", "Iichigaya"))
         self.comboDestino.setItemText(34, _translate("MainWindow", "Iidabashi"))
         self.comboDestino.setItemText(35, _translate("MainWindow", "Suidobashi"))
