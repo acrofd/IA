@@ -81,7 +81,7 @@ class Ui_MainWindow(object):
         self.MapaMetro.setText("")
         path = os.path.dirname(os.path.abspath(__file__))
         print(path)
-        self.MapaMetro.setPixmap(QPixmap(os.path.join(path, 'Tokyo.jpg')))
+        self.MapaMetro.setPixmap(QPixmap(os.path.join(path, 'Japan.jpg')))
         self.MapaMetro.setObjectName("MapaMetro")
         self.CalcularRuta = QtWidgets.QPushButton(self.centralwidget)
         self.CalcularRuta.setGeometry(QtCore.QRect(90, 170, 171, 31))

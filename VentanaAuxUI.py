@@ -12,7 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow2(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(471, 472)
+        MainWindow.resize(471, 530)
         MainWindow.setStyleSheet("background-color: rgb(82, 73, 204);\n"
 "")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -22,7 +22,7 @@ class Ui_MainWindow2(object):
         self.RutaCalculada.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.RutaCalculada.setObjectName("RutaCalculada")
         self.ruta = QtWidgets.QLabel(self.centralwidget)
-        self.ruta.setGeometry(QtCore.QRect(110, 130, 230, 265))
+        self.ruta.setGeometry(QtCore.QRect(110, 115, 230, 320))
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(False)
@@ -31,7 +31,7 @@ class Ui_MainWindow2(object):
         self.ruta.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.ruta.setObjectName("ruta")
         self.OkButton = QtWidgets.QPushButton(self.centralwidget)
-        self.OkButton.setGeometry(QtCore.QRect(180, 420, 88, 28))
+        self.OkButton.setGeometry(QtCore.QRect(180, 455, 88, 28))
         self.OkButton.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.OkButton.setObjectName("OkButton")
         MainWindow.setCentralWidget(self.centralwidget)

@@ -97,9 +97,4 @@ G['Hamamatsucho']['Shimbashi']['weight']=3
 G['Shimbashi']['Yurakucho']['weight']=2
 G['Yurakucho']['Tokyo']['weight']=1
 
-#Ejemplo obtener tiempo entre dos estaciones continuas
-#print(G.get_edge_data('Shimbashi', 'Yurakucho'))
 
-#Se dibuja con los nombres y se imprime
-#nx.draw(G, with_labels=True)
-#plt.show()

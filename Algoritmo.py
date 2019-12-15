@@ -96,12 +96,4 @@ def distancia_h(cordenadas, origen, destino):
     return geopy.distance.distance(cord1, cord2).km 
 
 
-def main():
-  
-    # Ejecutamos el algortimo
-    print(astar('Osaki', 'Iidabashi'))
-    
 
-
-if __name__ == '__main__':
-    main()
