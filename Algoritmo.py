@@ -4,10 +4,11 @@ from Coordenadas import Cordenadas
 from Estaciones import Estacion
 import geopy.distance
 
-
 # Algoritmo A*
 def astar(start, end):
     
+    # Lineas
+    lineas = []
     # Se inicializa el mapa
     cordenadas = Cordenadas()
     cordenadas.añadir()
@@ -28,18 +29,20 @@ def astar(start, end):
     # Itera hasta que llega al final
     while len(open_list) > 0:
 
-        # Coje el nodo actual
+        # Almacena el nodo actual
+        current_node_ = open_list[0]
+        # Ordena la lista         
+        open_list.sort()
+        # Coge el nodo mas pequeño 
         current_node = open_list[0]
-        current_index = 0
-        for index, item in enumerate(open_list):
-            if item.f < current_node.f:
-                current_node = item
-                current_index = index
-
         # Saca el nodo actual de la lista abierta y lo añade a la cerrada
-        open_list.pop(current_index)
+        open_list.pop(0)
+        # Metemos el nodo en la lista cerrada
         closed_list.append(current_node)
-
+        
+        # Calculamos las Lineas
+        lineas = compLineas(cordenadas, current_node_.name, current_node.name)
+        
         # Llega al final
         if current_node == end_node:
             path = []
@@ -60,7 +63,6 @@ def astar(start, end):
 
             # Crea un nodo
             new_node = Node(current_node, new_station)
-
             # Lo añade a la lista
             children.append(new_node)
 
@@ -72,11 +74,14 @@ def astar(start, end):
                 if child == closed_child:
                     continue
 
+            # Get lineas
+            #Lineas__ = compLineas(cordenadas, current_node.name, child.name)
             # Crea los valores F, H y G
-            child.g = current_node.g + distancia_g(current_node.name, child.name)
-            child.h = distancia_h(cordenadas , child.name, end_node.name)
+            transbordo = getTransbordo(lineas, compLineas(cordenadas, current_node.name, child.name))
+            child.g = current_node.g + distanciaG(current_node.name, child.name) + transbordo
+            child.h = distanciaH(cordenadas , child.name, end_node.name)
             child.f = child.g + child.h
-            
+                        
             for open_node in open_list:
                 if child == open_node and child.g > open_node.g:
                     continue
@@ -86,14 +91,29 @@ def astar(start, end):
 
 
 # Calcula la distancia G
-def distancia_g(origen, destino):
+def distanciaG(origen, destino):
     return G.get_edge_data(origen, destino)['weight']
 
 # Calcula la distancia H
-def distancia_h(cordenadas, origen, destino):
+def distanciaH(cordenadas, origen, destino):
     cord1 = cordenadas.getEstaciones()[origen].getCordenada()
     cord2 = cordenadas.getEstaciones()[destino].getCordenada()
     return geopy.distance.distance(cord1, cord2).km 
 
+def compLineas(cordenadas, origen, destino):
+    lista = []
+    linea1 = cordenadas.getLinea(origen)
+    linea2 = cordenadas.getLinea(destino)
+    for element in linea1:
+        if element in linea2:
+            lista.append(element)
+    return lista
 
+def getTransbordo(linea1, linea2):
+    if len(linea1) == 0:
+        return 0
+    for element in linea1:
+        if element in linea2:
+            return 0
+    return 1.5
 

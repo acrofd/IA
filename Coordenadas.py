@@ -47,14 +47,14 @@ class Cordenadas:
         self.cordenadas["Harajuku"] = Estacion("Harajuku",["Yoyogi", "Shibuya"], (35.671612, 139.702930))
 
     def getLinea(self, estacion):
-        if(estacion in self.rojo and not estacion in self.verde and not estacion in self.amarillo):
-            return "rojo"
-        if(estacion in self.verde and not estacion in self.rojo and not estacion in self.amarillo):
-            return "verde"
-        if(estacion in self.amarillo and not estacion in self.verde and not estacion in self.rojo):
-            return "amarillo"
-        return None
-        
+        lineas = []
+        if(estacion in self.rojo):
+            lineas.append("rojo")
+        if(estacion in self.verde):
+            lineas.append("verde")
+        if(estacion in self.amarillo):
+            lineas.append("amarillo")
+        return lineas
         
     def getEstaciones(self):
         return self.cordenadas
