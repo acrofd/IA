@@ -1,1 +1,0 @@
- .\envWindows\Scripts\python.exe .\JapanInterfaz.py 
